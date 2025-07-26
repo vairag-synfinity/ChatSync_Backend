@@ -21,7 +21,7 @@ app.get('/api/protected', require('./middleware/auth'), (req, res) => {
 });
 
 connectDB();
-socketHandlerChat(io);
+// socketHandlerChat(io);
 socketHandlerAudio(io);
 
 const PORT = process.env.PORT || 5000;
