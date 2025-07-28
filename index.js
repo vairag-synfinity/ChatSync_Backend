@@ -12,9 +12,13 @@ const {socketHandlerMultiUserGroupVoiceCall} = require('./socketHandlerMultiUser
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server, { cors: { origin: '*',
-method : ['GET', 'POST'],
-credentials: true } });
+const io = socketIo(server, { 
+  cors: {
+  origin: '*',
+  methods: ['GET', 'POST'],
+  credentials: true
+}
+
 
 app.use(cors());
 app.use(express.json());
