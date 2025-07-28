@@ -18,7 +18,7 @@ const io = socketIo(server, {
   methods: ['GET', 'POST'],
   credentials: true
 }
-
+);
 
 app.use(cors());
 app.use(express.json());
