@@ -14,7 +14,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new socketIo.Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL,
+    origin: "https://chat-sync-frontend-cm82.vercel.app",
     methods: ["GET", "POST"]
   }
 });
