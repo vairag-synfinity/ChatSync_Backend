@@ -11,10 +11,11 @@ const app = express();
 const server = http.createServer(app);
 const io = new socketIo.Server(server, {
   cors: {
-    origin: https://chat-sync-frontend-cm82.vercel.app,
+    origin: "https://chat-sync-frontend-cm82.vercel.app",
     methods: ["GET", "POST"]
   }
 });
+
 
 
 app.use(cors());
