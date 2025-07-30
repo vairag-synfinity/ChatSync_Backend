@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 });
 
 connectDB();
-// socketHandlerChat(io);
+socketHandlerChat(io);
 // socketHandlerAudio(io);
 socketHandlerMultiUserGroupVoiceCall(io)
 
