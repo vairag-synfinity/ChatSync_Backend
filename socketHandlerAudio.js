@@ -53,7 +53,7 @@ const socketHandlerAudio = (io) => {
   });
 
   socket.on('disconnect', () => {
-    console.log('User disconnected:', socket.id);
+    // console.log('User disconnected:', socket.id);
     // Remove user from registered users
     for (const [username, id] of Object.entries(users)) {
       if (id === socket.id) {

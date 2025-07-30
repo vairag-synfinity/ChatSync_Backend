@@ -81,7 +81,7 @@ const socketHandlerChat = (io) => {
         }
       }
       io.emit('users_updated', Array.from(activeUsers.keys()));
-      console.log('User disconnected:', socket.id);
+      // console.log('User disconnected:', socket.id);
     });
   });
 };
