@@ -4,7 +4,7 @@ const activeUsers = new Map(); // username ➔ Set of socketIds
 
 const socketHandlerChat = (io) => {
   io.on('connection', (socket) => {
-    console.log('User connected:', socket.id);
+    // console.log('User connected:', socket.id);
 
     socket.on('register_user', async (username) => {
       if (!activeUsers.has(username)) {

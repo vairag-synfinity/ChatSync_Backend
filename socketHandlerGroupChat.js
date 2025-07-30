@@ -9,7 +9,7 @@ const handleGroupChat = (io) => {
   // io.use(socketAuth);
   
   io.on('connection', (socket) => {
-    console.log('User connected:', socket.id);
+    // console.log('User connected:', socket.id);
     
     socket.on('join_group_room', async ({ name, room }) => {
       try {
