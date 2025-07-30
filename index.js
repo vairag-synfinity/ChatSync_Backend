@@ -12,12 +12,9 @@ const {socketHandlerMultiUserGroupVoiceCall} = require('./socketHandlerMultiUser
 
 const app = express();
 const server = http.createServer(app);
-const io = new socketIo.Server(server, {
-  cors: {
-    origin: process.env.CLIENT_URL,
-    methods: ["GET", "POST"]
-  }
-});
+const io = socketIo(server, { cors: { origin: '*',
+method : ['GET', 'POST'],
+credentials: true } });
 
 app.use(cors());
 app.use(express.json());
@@ -43,10 +40,8 @@ app.get('/', (req, res) => {
 });
 
 connectDB();
-socketHandlerChat(io  );
+socketHandlerChat(io);
 socketHandlerAudio(io);
-handleGroupChat(io)
-socketHandlerMultiUserGroupVoiceCall(io);
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
