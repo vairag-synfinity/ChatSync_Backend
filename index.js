@@ -10,11 +10,14 @@ const {handleGroupChat} = require('./socketHandlerGroupChat');
 const userRoutes = require("./routes/groupChat");
 const {socketHandlerMultiUserGroupVoiceCall} = require('./socketHandlerMultiUserGroupVoiceCall');
 
-const app = express();
-const server = http.createServer(app);
-const io = socketIo(server, { cors: { origin: '*',
-method : ['GET', 'POST'],
-credentials: true } });
+const io = socketIo(server, {
+  cors: {
+    origin: 'https://chat-sync-frontend-cm82.vercel.app',  
+    methods: ['GET', 'POST'],
+    credentials: true
+  }
+});
+
 
 app.use(cors());
 app.use(express.json());
