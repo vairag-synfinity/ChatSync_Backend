@@ -5,7 +5,7 @@ const cors = require('cors');
 const socketIo = require('socket.io');
 const connectDB = require('./db');
 const socketHandlerChat = require('./socketHandlerChat');
-const socketHandlerAudio = require('./socketHandlerAudio');
+// const socketHandlerAudio = require('./socketHandlerAudio');
 const {handleGroupChat} = require('./socketHandlerGroupChat');
 const userRoutes = require("./routes/groupChat");
 const {socketHandlerMultiUserGroupVoiceCall} = require('./socketHandlerMultiUserGroupVoiceCall');
@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 
 connectDB();
 socketHandlerChat(io);
-socketHandlerAudio(io);
+// socketHandlerAudio(io);
 socketHandlerMultiUserGroupVoiceCall(io);
 
 
