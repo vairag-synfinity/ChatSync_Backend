@@ -25,36 +25,39 @@ const socketHandlerMultiUserGroupVoiceCall = (io) => {
 
       console.log(`Room ${roomId} created by ${creator}`);
       
-      // Invite other participants
-      participants.forEach(participant => {
-        if (participant !== creator) {
-          const participantSocketId = users[participant];
-          if (participantSocketId) {
-            io.to(participantSocketId).emit('incoming-call', {
-              from: creator,
-              offer: null, // Will be sent in separate call-user event
-              roomId: roomId
-            });
-          }
-        }
-      });
-
-      // Notify creator that room is created
+      // Notify creator that room is created first
       socket.emit('room-created', {
         roomId: roomId,
         participants: [creator]
       });
 
-      // Start establishing connections between creator and each participant
+      // Then invite other participants and establish connections
       setTimeout(() => {
         participants.forEach(participant => {
           if (participant !== creator) {
-            socket.emit('request-connection', {
-              from: participant,
-              roomId: roomId
-            });
+            const participantSocketId = users[participant];
+            if (participantSocketId) {
+              // Send initial invitation
+              io.to(participantSocketId).emit('incoming-call', {
+                from: creator,
+                offer: null,
+                roomId: roomId
+              });
+            }
           }
         });
+
+        // After invitations, start establishing peer connections
+        setTimeout(() => {
+          participants.forEach(participant => {
+            if (participant !== creator) {
+              socket.emit('request-connection', {
+                from: participant,
+                roomId: roomId
+              });
+            }
+          });
+        }, 500);
       }, 1000);
     });
 
